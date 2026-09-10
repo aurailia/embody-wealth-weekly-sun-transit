@@ -1231,7 +1231,11 @@ function showBreathPhase() {
   var doneDiv = div(""); doneDiv.id = "breathDone"; doneDiv.style.display = "none";
   var doneText = el("p", "Beautiful. Your cards are coming..."); doneText.style.cssText = "font-size:17px;color:#FF1F7A;font-style:italic;text-align:center;line-height:1.7";
   doneDiv.appendChild(doneText);
-  wrap.appendChild(intro); wrap.appendChild(sub4); wrap.appendChild(counter); wrap.appendChild(circle); wrap.appendChild(dots); wrap.appendChild(label); wrap.appendChild(doneDiv);
+  var skipBtn = document.createElement("button");
+  skipBtn.style.cssText = "background:none;border:none;color:#bbb;font-size:13px;font-family:Georgia,serif;cursor:pointer;margin-top:8px;display:block;width:100%;text-align:center;text-decoration:underline";
+  skipBtn.textContent = "Skip and choose my card";
+  skipBtn.onclick = function() { clearBreathTimers(); showSelectPhase(); };
+  wrap.appendChild(intro); wrap.appendChild(sub4); wrap.appendChild(counter); wrap.appendChild(circle); wrap.appendChild(dots); wrap.appendChild(label); wrap.appendChild(doneDiv); wrap.appendChild(skipBtn);
   c.appendChild(wrap);
 }
 
