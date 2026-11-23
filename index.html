@@ -4,78 +4,134 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Your Weekly Sun Transit Wealth Frequency</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
-<style>*{box-sizing:border-box;margin:0;padding:0}
-body{background:#FDFCF8;font-family:Georgia,serif;min-height:100vh;color:#1A1A2E}
-::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:rgba(255,31,122,0.3);border-radius:2px}
-h1,h2,h3{font-family:"Playfair Display",Georgia,serif}
-button{cursor:pointer;font-family:Georgia,serif;border:none;outline:none}
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#160B2B;
+  --bg2:#1C1038;
+  --bg3:#271545;
+  --card:#1F1240;
+  --card-border:rgba(212,168,71,0.25);
+  --gold:#D4A847;
+  --gold-light:#EDD078;
+  --gold-dim:rgba(212,168,71,0.75);
+  --teal:#4DD9C8;
+  --teal-dim:rgba(77,217,200,0.18);
+  --lavender:#C4A8F0;
+  --lavender-dim:rgba(196,168,240,0.15);
+  --text:#F0EAF8;
+  --text-dim:#C4B8DC;
+  --accent:var(--gold);
+}
+body{background:var(--bg) url('bg_wave.png') center center / cover fixed;font-family:'DM Sans',sans-serif;min-height:100vh;color:var(--text)}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:rgba(212,168,71,0.3);border-radius:2px}
+h1,h2,h3,.cinzel{font-family:'Josefin Sans',sans-serif}
+button{cursor:pointer;font-family:'DM Sans',sans-serif;border:none;outline:none}
+
+
+/* PORTAL */
 .portal{max-width:1060px;margin:0 auto;padding-bottom:60px}
-.header{text-align:center;padding:28px 24px 20px;border-bottom:1px solid #f0e8d4}
-.tabs{display:flex;border-bottom:1px solid #f0e8d4}
-.tab{flex:1;background:none;border-bottom:3px solid transparent;border-top:none;border-left:none;border-right:none;padding:18px 8px;color:#666;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-family:"Playfair Display",Georgia,serif}
-.tab.active{border-bottom-color:#FF1F7A;color:#FF1F7A;font-weight:600}
+
+/* HEADER BELOW BANNER */
+.header{text-align:center;padding:22px 24px 18px;border-bottom:1px solid var(--card-border);background:var(--bg2)}
+.header-eyebrow{font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:10px}
+.header h1{font-family:'Josefin Sans',sans-serif;font-size:0}
+#portalTitle{font-size:clamp(18px,4vw,30px);font-weight:600;background:linear-gradient(135deg,#E87CA0 0%,#F0A8C0 50%,#4DD9C8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block;line-height:1.2}
+.header p{font-size:15px;color:var(--text-dim);font-style:italic;font-family:'Cormorant Garamond',serif;margin-top:6px;letter-spacing:0.04em}
+.header .gate-badge{display:inline-block;margin-top:10px;padding:4px 16px;border:1px solid var(--card-border);border-radius:20px;font-size:12px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dim);font-family:'Josefin Sans',sans-serif}
+
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid var(--card-border);background:var(--bg2)}
+.tab{flex:1;background:none;border-bottom:3px solid transparent;border-top:none;border-left:none;border-right:none;padding:16px 8px;color:var(--text-dim);font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-family:'Josefin Sans',sans-serif;transition:all 0.2s}
+.tab:hover{color:var(--gold-dim)}
+.tab.active{border-bottom-color:var(--gold);color:var(--gold);font-weight:600}
 .hidden{display:none!important}
-.hero{text-align:center;padding:24px 24px 20px;background:linear-gradient(135deg,#FF1F7A 0%,#FF6BAB 40%,#89CFF0 100%)}
-.card{background:#fff;border:1px solid #f0e8d4;border-radius:14px;padding:22px;margin-bottom:16px}
-.block-eyebrow{font-size:13px;letter-spacing:0.2em;text-transform:uppercase;font-family:Georgia,serif;margin-bottom:4px}
-.block-title{font-size:22px;color:#1A1A2E;margin:0 0 2px;font-weight:600;line-height:1.15;font-family:"Playfair Display",Georgia,serif}
-.block-text{font-size:17px;color:#3a3a3a;line-height:1.9}
-.modal-overlay{position:fixed;inset:0;background:rgba(26,26,46,0.6);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-.modal-box{max-width:460px;width:100%;max-height:90vh;overflow-y:auto;background:#fff;border-radius:24px;border:1.5px solid rgba(255,31,122,0.2);padding:36px 28px;box-shadow:0 8px 60px rgba(255,31,122,0.12)}
-.type-btn{background:#f5f5f5;border:2px solid #ddd;border-radius:12px;padding:16px 20px;color:#444;font-size:17px;text-align:left;width:100%;display:block;margin-bottom:10px}
-.type-btn.sel{background:linear-gradient(135deg,rgba(255,31,122,0.07),rgba(137,207,240,0.07));border-color:#FF1F7A;color:#1A1A2E;font-weight:600}
+
+/* CONTENT BACKGROUND */
+#transitTab,#wealthTab,#oracleTab{background:var(--bg);min-height:300px}
+
+/* HERO */
+.hero{text-align:center;padding:28px 24px 24px;background:linear-gradient(135deg,rgba(212,168,71,0.08) 0%,rgba(63,207,190,0.06) 100%);border-bottom:1px solid var(--card-border)}
+
+/* CARDS */
+.card{background:#f8f4ff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:22px;margin-bottom:16px}
+.card:hover{border-color:rgba(212,168,71,0.3)}
+.block-eyebrow{font-size:12px;letter-spacing:0.25em;text-transform:uppercase;font-family:'Josefin Sans',sans-serif;color:#b8860b;margin-bottom:6px}
+.block-title{font-size:21px;color:#1a0d2e;margin:0 0 2px;font-weight:600;line-height:1.2;font-family:'Josefin Sans',sans-serif}
+.block-text{font-size:17px;color:#2a1550;line-height:1.85;font-weight:400}
+
+/* MODALS */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,5,20,0.75);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.modal-box{max-width:460px;width:100%;max-height:90vh;overflow-y:auto;background:#271545;border-radius:20px;border:1px solid rgba(212,168,71,0.3);padding:32px 26px;box-shadow:0 8px 80px rgba(0,0,0,0.7)}
+
+/* BUTTONS */
+.type-btn{background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 18px;color:var(--text);font-size:16px;text-align:left;width:100%;display:block;margin-bottom:10px;transition:all 0.2s}
+.type-btn:hover{border-color:var(--gold-dim);color:#fff;background:rgba(255,255,255,0.1)}
+.type-btn.sel{background:rgba(212,168,71,0.14);border-color:var(--gold);color:#fff;font-weight:600}
 .center-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
-.center-btn{background:#f5f5f5;border:2px solid #ddd;border-radius:10px;padding:14px 10px;color:#444;font-size:15px;text-align:center}
-.center-btn.sel{background:rgba(137,207,240,0.12);border-color:#89CFF0;color:#1A1A2E;font-weight:600}
-.btn-pink{background:linear-gradient(135deg,#FF1F7A,#FF6BAB);border-radius:12px;padding:16px;color:#fff;font-size:15px;font-family:"Playfair Display",Georgia,serif;letter-spacing:0.06em;box-shadow:0 4px 16px rgba(255,31,122,0.22);width:100%}
-.btn-pink-lg{background:linear-gradient(135deg,#FF1F7A,#FF6BAB);border-radius:14px;padding:18px;color:#fff;font-size:17px;font-family:"Playfair Display",Georgia,serif;letter-spacing:0.08em;box-shadow:0 4px 20px rgba(255,31,122,0.25);width:100%}
-.btn-navy{background:linear-gradient(135deg,#1A1A2E,#4B3F72);border-radius:12px;padding:18px;color:#fff;font-size:17px;letter-spacing:0.06em;width:100%}
-.btn-grey{background:#f5f5f5;border:2px solid #ddd;border-radius:12px;padding:16px 20px;color:#555;font-size:17px}
-.btn-outline{background:none;border:1.5px solid #ddd;border-radius:10px;padding:12px 28px;color:#666;font-size:15px}
-.profile-tag{background:rgba(255,31,122,0.07);border:1.5px solid rgba(255,31,122,0.3);border-radius:20px;padding:5px 16px;font-size:14px;color:#FF1F7A;font-weight:600;display:inline-block;margin:4px}
-.oracle-card-wrap{border-radius:16px;cursor:pointer;position:relative;overflow:hidden;transition:all 0.3s ease;box-shadow:0 6px 24px rgba(137,207,240,0.2)}
-.oracle-card-wrap:hover{transform:translateY(-6px) scale(1.02)}
-.oracle-card-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(26,26,46,0.75) 0%,transparent 100%);padding:20px 12px 16px;text-align:center;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.92);font-weight:600}
-.reading-box{background:linear-gradient(160deg,#fdfcf4,#f5ede0);border:1.5px solid rgba(255,31,122,0.18);border-radius:20px;padding:32px 26px;margin-bottom:24px}
-.why-box{background:rgba(255,31,122,0.03);border:1px solid rgba(255,31,122,0.12);border-radius:14px;padding:20px;margin-bottom:16px}
-.action-box{background:linear-gradient(135deg,rgba(137,207,240,0.06),transparent);border:1px solid rgba(137,207,240,0.2);border-radius:14px;padding:20px}
-.footer{text-align:center;padding:24px;border-top:1px solid #f0e8d4;margin-top:8px}
-.stabs{display:flex;overflow-x:auto;border-bottom:1px solid #f0e8d4;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.center-btn{background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;padding:12px 8px;color:var(--text);font-size:14px;text-align:center;transition:all 0.2s;cursor:pointer}
+.center-btn:hover{border-color:var(--teal);color:#fff;background:rgba(77,217,200,0.1)}
+.center-btn.sel{background:rgba(77,217,200,0.15);border-color:var(--teal);color:#fff;font-weight:600}
+.btn-pink{background:linear-gradient(135deg,var(--gold),#C49020);border-radius:12px;padding:16px;color:#1A0D2E;font-size:16px;font-family:'Josefin Sans',sans-serif;letter-spacing:0.1em;font-weight:700;box-shadow:0 4px 20px rgba(212,168,71,0.25);width:100%}
+.btn-pink-lg{background:linear-gradient(135deg,var(--gold),#C49020);border-radius:14px;padding:18px;color:#1A0D2E;font-size:16px;font-family:'Josefin Sans',sans-serif;letter-spacing:0.1em;font-weight:700;box-shadow:0 4px 24px rgba(212,168,71,0.3);width:100%}
+.btn-navy{background:linear-gradient(135deg,rgba(63,207,190,0.15),rgba(176,143,224,0.15));border:1px solid var(--teal);border-radius:12px;padding:18px;color:var(--teal);font-size:16px;letter-spacing:0.08em;width:100%;font-family:'Josefin Sans',sans-serif}
+.btn-grey{background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);border-radius:12px;padding:14px 18px;color:var(--text);font-size:17px}
+.btn-outline{background:none;border:1px solid rgba(255,255,255,0.2);border-radius:10px;padding:11px 24px;color:var(--text);font-size:15px}
+
+/* PROFILE TAG */
+.profile-tag{background:rgba(212,168,71,0.1);border:1px solid rgba(212,168,71,0.35);border-radius:20px;padding:4px 14px;font-size:14px;color:var(--gold);font-weight:600;display:inline-block;margin:3px;font-family:'Josefin Sans',sans-serif}
+
+/* ORACLE */
+.oracle-card-wrap{border-radius:16px;cursor:pointer;position:relative;overflow:hidden;transition:all 0.3s ease;box-shadow:0 6px 24px rgba(0,0,0,0.3);border:1px solid var(--card-border)}
+.oracle-card-wrap:hover{transform:translateY(-6px) scale(1.02);border-color:var(--gold-dim)}
+.oracle-card-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(10,5,20,0.85) 0%,transparent 100%);padding:20px 12px 14px;text-align:center;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.9);font-weight:600;font-family:'Josefin Sans',sans-serif}
+
+/* READING BOXES */
+.reading-box{background:linear-gradient(160deg,#f8f4ff,#f0ebfa);border:1px solid rgba(0,0,0,0.08);border-radius:20px;padding:30px 24px;margin-bottom:24px}
+.why-box{background:rgba(184,134,11,0.07);border:1px solid rgba(184,134,11,0.2);border-radius:14px;padding:18px;margin-bottom:14px}
+.action-box{background:rgba(77,217,200,0.07);border:1px solid rgba(77,217,200,0.25);border-radius:14px;padding:18px}
+
+/* FOOTER */
+.footer{text-align:center;padding:24px;border-top:1px solid var(--card-border);margin-top:8px;background:var(--bg2)}
+
+/* SIDEBAR */
+.stabs{display:flex;overflow-x:auto;border-bottom:1px solid var(--card-border);-webkit-overflow-scrolling:touch;scrollbar-width:none;background:var(--bg2)}
 .stabs::-webkit-scrollbar{display:none}
-.stab{flex-shrink:0;background:none;border:none;border-bottom:3px solid transparent;padding:14px 18px;font-size:14px;color:#999;font-family:Georgia,serif;cursor:pointer;white-space:nowrap;transition:all 0.2s}
-.stab.active{color:#FF1F7A;border-bottom-color:#FF1F7A;font-weight:600}
-.pill-panel{display:none;padding:24px 20px;animation:fadeIn 0.3s ease}
+.stab{flex-shrink:0;background:none;border:none;border-bottom:3px solid transparent;padding:13px 16px;font-size:14px;color:var(--text);font-family:'Josefin Sans',sans-serif;cursor:pointer;white-space:nowrap;transition:all 0.2s;letter-spacing:0.06em}
+.stab.active{color:var(--gold);border-bottom-color:var(--gold);font-weight:600}
+.pill-panel{display:none;padding:22px 18px;animation:fadeIn 0.3s ease;color:#2a1550}
 .pill-panel.active{display:block}
-.accord{border:1px solid #f0e8d4;border-radius:14px;margin-bottom:12px;overflow:hidden;background:#fff}
-.accord-hdr{width:100%;background:none;border:none;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;gap:12px}
-.accord-hdr:hover{background:rgba(255,31,122,0.02)}
-.accord-hdr.open{background:rgba(255,31,122,0.03)}
-.accord-label{font-size:16px;font-weight:600;color:#1A1A2E;font-family:"Playfair Display",Georgia,serif}
-.accord-eyebrow{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:2px}
-.accord-arrow{font-size:18px;color:#FF1F7A;flex-shrink:0;transition:transform 0.25s;line-height:1}
+
+/* ACCORDION */
+.accord{border:1px solid rgba(0,0,0,0.08);border-radius:14px;margin-bottom:12px;overflow:hidden;background:#f8f4ff}
+.accord-hdr{width:100%;background:none;border:none;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;gap:12px}
+.accord-hdr:hover{background:rgba(212,168,71,0.04)}
+.accord-hdr.open{background:rgba(212,168,71,0.06)}
+.accord-label{font-size:16px;font-weight:600;color:#1a0d2e;font-family:'Josefin Sans',sans-serif}
+.accord-eyebrow{font-size:11px;color:#b8860b;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:2px;color:var(--gold-dim)}
+.accord-arrow{font-size:18px;color:var(--gold);flex-shrink:0;transition:transform 0.25s;line-height:1}
 .accord-hdr.open .accord-arrow{transform:rotate(180deg)}
-.accord-body{display:none;padding:0 22px 22px}
+.accord-body{display:none;padding:0 20px 20px}
 .accord-body.open{display:block}
-@media(max-width:768px){.tab{font-size:11px;padding:14px 4px}}
-@keyframes pulse{0%,100%{opacity:0.3;transform:scale(0.8)}50%{opacity:1;transform:scale(1.2)}}
-@keyframes slowPulse{0%,100%{opacity:0.5;transform:scale(0.95)}50%{opacity:1;transform:scale(1.05)}}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* DESKTOP SIDEBAR NAV */
 .sidebar-layout{display:block}
 .sidebar-nav{display:none}
 .sidebar-content{display:block}
-.snav-btn{width:100%;background:none;border:none;border-bottom:1px solid #f0e8d4;padding:16px 20px;text-align:left;cursor:pointer;font-family:Georgia,serif;font-size:15px;color:#888;transition:all 0.2s;line-height:1.3}
+.snav-btn{width:100%;background:none;border:none;border-bottom:1px solid var(--card-border);padding:14px 18px;text-align:left;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--text);transition:all 0.2s;line-height:1.3}
 .snav-btn:last-child{border-bottom:none}
-.snav-btn .snav-eye{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:2px}
-.snav-btn .snav-title{font-size:15px;font-weight:600;color:#1A1A2E;display:block;font-family:"Playfair Display",Georgia,serif}
-.snav-btn.active{background:linear-gradient(135deg,rgba(255,31,122,0.08),rgba(137,207,240,0.08));border-left:3px solid #FF1F7A;color:#FF1F7A}
-.snav-btn.active .snav-title{color:#FF1F7A}
+.snav-btn .snav-eye{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;display:block;margin-bottom:2px;font-family:'Josefin Sans',sans-serif;color:var(--gold-dim)}
+.snav-btn .snav-title{font-size:15px;font-weight:600;color:var(--text);display:block;font-family:'Josefin Sans',sans-serif}
+.snav-btn.active{background:rgba(212,168,71,0.07);border-left:2px solid var(--gold);color:var(--gold)}
+.snav-btn.active .snav-title{color:var(--gold)}
 .spanel{display:none;animation:fadeIn 0.3s ease}
 .spanel.active{display:block}
+
 @media(min-width:768px){
   .sidebar-layout{display:grid;grid-template-columns:220px 1fr;min-height:400px}
-  .sidebar-nav{display:block;border-right:1px solid #f0e8d4;padding:20px 0;position:sticky;top:0;align-self:start}
-  .sidebar-content{padding:28px 28px 40px}
+  .sidebar-nav{display:block;border-right:1px solid var(--card-border);padding:20px 0;position:sticky;top:0;align-self:start;background:var(--bg2)}
+  .sidebar-content{padding:28px 28px 40px;background:#fff;border-radius:0 0 0 0;overflow-y:auto}
   .accord{display:none}
   .accord.desktop-hidden{display:none}
   .mobile-accord-wrap{display:none}
@@ -86,17 +142,27 @@ button{cursor:pointer;font-family:Georgia,serif;border:none;outline:none}
   .spanel.active{display:none!important}
   .mobile-accord-wrap .accord{display:block}
 }
-.fade-in{animation:fadeIn 0.4s ease}</style>
+@media(max-width:768px){.tab{font-size:10px;padding:13px 4px;letter-spacing:0.06em}}
+@keyframes pulse{0%,100%{opacity:0.3;transform:scale(0.8)}50%{opacity:1;transform:scale(1.2)}}
+@keyframes slowPulse{0%,100%{opacity:0.5;transform:scale(0.95)}50%{opacity:1;transform:scale(1.05)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeIn 0.4s ease}
+
+/* Gold rule divider */
+.gold-rule{display:flex;align-items:center;gap:10px;margin:16px 0}
+.gold-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--card-border),transparent)}
+.gold-rule-diamond{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:0.7}
+</style>
 </head>
 <body>
-<div class="portal">
-  <div class="header">
-    <div style="font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#B8860B;margin-bottom:10px">Embody Wealth</div>
-    <h1 style="font-size:0;margin:0 0 6px;line-height:1"><span id="portalTitle" style="font-size:38px;font-weight:600;font-family:'Playfair Display',Georgia,serif;background:linear-gradient(135deg,#FF1F7A 0%,#FF6BAB 45%,#89CFF0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block">Your Weekly Sun Transit Wealth Frequency</span></h1>
-    <p style="font-size:15px;color:#999;font-style:italic;font-family:Georgia,serif;margin:0">Tune in. Show up magnetic. Work with the energy.</p>
+<div style="min-height:100vh;background:rgba(255,255,255,0.70)"><div class="portal">
+<div class="header">
+  <div class="header-eyebrow">Embody Wealth Inner Circle</div>
+    <h1 style="font-size:0;margin:0 0 6px;line-height:1"><span id="portalTitle" style="font-size:38px;font-weight:600;font-family:'Josefin Sans',sans-serif;background:linear-gradient(135deg,#E87CA0 0%,#F0A8C0 50%,#4DD9C8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block">Your Weekly Sun Transit Wealth Frequency</span></h1>
+    <p style="font-size:15px;color:#C49020;font-style:normal;font-family:'Josefin Sans',sans-serif;margin:0;font-weight:600;letter-spacing:0.08em">Tune in. Show up magnetic. Work with the energy.</p>
     <div id="profileTags" style="margin-top:10px"></div>
   </div>
-  <div class="tabs">
+  <div class="tabs" id="mainTabs">
     <button class="tab active" id="tabFreq" onclick="switchTab('freq')">&#9788; Weekly Frequency</button>
     <button class="tab" id="tabWealth" onclick="switchTab('wealth')">&#10039; Wealth Blueprint</button>
     <button class="tab" id="tabOracle" onclick="switchTab('oracle')">&#10022; Daily Oracle</button>
@@ -107,63 +173,63 @@ button{cursor:pointer;font-family:Georgia,serif;border:none;outline:none}
     <div id="oracleTab" class="hidden"></div>
   </div>
   <div class="footer">
-    <button onclick="showSetup()" style="background:none;border:none;color:#888;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;display:block;margin:0 auto 14px">Update My Design</button>
-    <div style="color:#FF1F7A;font-size:22px">&#10045;</div>
-    <p style="font-size:12px;color:#FF6BAB;letter-spacing:0.1em;margin:8px 0 0">To living our dreams. &mdash; Aurailia &#10022;</p>
+    <button onclick="showSetup()" style="background:none;border:none;color:var(--text-dim);font-size:13px;letter-spacing:0.15em;text-transform:uppercase;font-weight:600;display:block;margin:0 auto 14px;font-family:'Josefin Sans',sans-serif">Update My Design</button>
+    <div style="color:var(--gold);font-size:22px">&#10045;</div>
+    <p style="font-size:13px;color:#C49020;letter-spacing:0.1em;margin:8px 0 0">To living our dreams. &mdash; Aurailia &#10022;</p>
   </div>
 </div>
 <div class="modal-overlay hidden" id="setupModal">
   <div class="modal-box">
     <div style="text-align:center;margin-bottom:24px">
-      <div style="color:#FF1F7A;font-size:36px">&#10045;</div>
+      <div style="color:#D4A847;font-size:36px">&#10045;</div>
       <h2 id="modalTitle" style="font-size:26px;font-weight:normal;margin:12px 0 8px;color:#1A1A2E"></h2>
       <p id="modalSub" style="font-size:16px;color:#555;font-style:italic;line-height:1.6;margin:0"></p>
     </div>
     <div id="modalStep1">
       <div id="hdKnowPrompt">
         <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:8px">
-          <button id="btnKnowHD" style="background:linear-gradient(135deg,rgba(255,31,122,0.07),rgba(137,207,240,0.07));border:2px solid #FF1F7A;border-radius:14px;padding:20px;text-align:left;cursor:pointer;width:100%">
-            <div style="font-size:17px;font-weight:600;color:#1A1A2E;font-family:Georgia,serif;margin-bottom:4px">Yes, I know my Human Design &#10022;</div>
-            <div style="font-size:14px;color:#888;font-style:italic">Enter my type, authority, profile and open centers</div>
+          <button id="btnKnowHD" style="background:rgba(212,168,71,0.1);border:2px solid #D4A847;border-radius:14px;padding:20px;text-align:left;cursor:pointer;width:100%">
+            <div style="font-size:17px;font-weight:600;color:#1A1A2E;font-family:'DM Sans',sans-serif;margin-bottom:4px">Yes, I know my Human Design &#10022;</div>
+            <div style="font-size:14px;color:#C4B8DC;font-style:italic">Enter my type, authority, profile and open centers</div>
           </button>
           <button id="btnNeedHD" style="background:#f5f5f5;border:2px solid #ddd;border-radius:14px;padding:20px;text-align:left;cursor:pointer;width:100%">
-            <div style="font-size:17px;font-weight:600;color:#1A1A2E;font-family:Georgia,serif;margin-bottom:4px">No, I need to get my chart</div>
-            <div style="font-size:14px;color:#888;font-style:italic">I'll show you exactly where to find everything</div>
+            <div style="font-size:17px;font-weight:600;color:#1A1A2E;font-family:'DM Sans',sans-serif;margin-bottom:4px">No, I need to get my chart</div>
+            <div style="font-size:14px;color:#C4B8DC;font-style:italic">I'll show you exactly where to find everything</div>
           </button>
         </div>
       </div>
       <div id="hdGuidePanel" style="display:none">
         <div style="background:linear-gradient(135deg,rgba(255,31,122,0.04),rgba(137,207,240,0.04));border:1px solid rgba(255,31,122,0.15);border-radius:14px;padding:20px;margin-bottom:16px">
-          <div style="font-size:13px;letter-spacing:0.15em;text-transform:uppercase;color:#B8860B;margin-bottom:10px;font-family:Georgia,serif">Step 1 &mdash; Get Your Free Chart</div>
-          <p style="font-size:16px;color:#3a3a3a;line-height:1.7;margin-bottom:14px">Go to Jovian Archive and generate your free chart. You need your birth date, time, and city.</p>
-          <a href="https://jovianarchive.com/pages/get-your-human-design-chart" target="_blank" style="display:block;background:linear-gradient(135deg,#FF1F7A,#FF6BAB);border-radius:10px;padding:14px 20px;color:#fff;text-decoration:none;font-size:15px;font-family:Georgia,serif;font-weight:600;text-align:center">Get My Free Chart &rarr;</a>
+          <div style="font-size:13px;letter-spacing:0.15em;text-transform:uppercase;color:#B8860B;margin-bottom:10px;font-family:'DM Sans',sans-serif">Step 1 &mdash; Get Your Free Chart</div>
+          <p style="font-size:16px;color:#F0EAF8;line-height:1.7;margin-bottom:14px">Go to Jovian Archive and generate your free chart. You need your birth date, time, and city.</p>
+          <a href="https://jovianarchive.com/pages/get-your-human-design-chart" target="_blank" style="display:block;background:linear-gradient(135deg,#D4A847,#C49020);border-radius:10px;padding:14px 20px;color:#fff;text-decoration:none;font-size:15px;font-family:'DM Sans',sans-serif;font-weight:600;text-align:center">Get My Free Chart &rarr;</a>
         </div>
         <div style="background:#fff;border:1px solid #f0e8d4;border-radius:14px;padding:20px;margin-bottom:16px">
-          <div style="font-size:13px;letter-spacing:0.15em;text-transform:uppercase;color:#B8860B;margin-bottom:14px;font-family:Georgia,serif">Step 2 &mdash; Find These 4 Things</div>
+          <div style="font-size:13px;letter-spacing:0.15em;text-transform:uppercase;color:#B8860B;margin-bottom:14px;font-family:'DM Sans',sans-serif">Step 2 &mdash; Find These 4 Things</div>
           <div style="display:flex;flex-direction:column;gap:14px">
-            <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#FF1F7A,#FF6BAB);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:14px;font-weight:600">1</div><div><div style="font-size:15px;font-weight:600;color:#1A1A2E;font-family:Georgia,serif;margin-bottom:2px">Type</div><div style="font-size:14px;color:#666;line-height:1.6">Under Properties on the left. Generator, Manifesting Generator, Projector, Manifestor, or Reflector.</div></div></div>
-            <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#FF1F7A,#FF6BAB);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:14px;font-weight:600">2</div><div><div style="font-size:15px;font-weight:600;color:#1A1A2E;font-family:Georgia,serif;margin-bottom:2px">Authority</div><div style="font-size:14px;color:#666;line-height:1.6">Just below Type. Emotional, Sacral, Splenic, Ego, Self-Projected, Mental, or Lunar.</div></div></div>
-            <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#FF1F7A,#FF6BAB);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:14px;font-weight:600">3</div><div><div style="font-size:15px;font-weight:600;color:#1A1A2E;font-family:Georgia,serif;margin-bottom:2px">Profile</div><div style="font-size:14px;color:#666;line-height:1.6">Lower left under Profile. Looks like 2/4, 5/1, 1/3 etc.</div></div></div>
-            <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#FF1F7A,#FF6BAB);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:14px;font-weight:600">4</div><div><div style="font-size:15px;font-weight:600;color:#1A1A2E;font-family:Georgia,serif;margin-bottom:2px">Open Centers</div><div style="font-size:14px;color:#666;line-height:1.6">White/empty shapes on the bodygraph are your open centers.</div></div></div>
+            <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#D4A847,#C49020);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:14px;font-weight:600">1</div><div><div style="font-size:15px;font-weight:600;color:#F0EAF8;font-family:"DM Sans",sans-serif;margin-bottom:2px">Type</div><div style="font-size:14px;color:#C4B8DC;line-height:1.6">Under Properties on the left. Generator, Manifesting Generator, Projector, Manifestor, or Reflector.</div></div></div>
+            <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#D4A847,#C49020);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:14px;font-weight:600">2</div><div><div style="font-size:15px;font-weight:600;color:#F0EAF8;font-family:"DM Sans",sans-serif;margin-bottom:2px">Authority</div><div style="font-size:14px;color:#C4B8DC;line-height:1.6">Just below Type. Emotional, Sacral, Splenic, Ego, Self-Projected, Mental, or Lunar.</div></div></div>
+            <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#D4A847,#C49020);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:14px;font-weight:600">3</div><div><div style="font-size:15px;font-weight:600;color:#F0EAF8;font-family:"DM Sans",sans-serif;margin-bottom:2px">Profile</div><div style="font-size:14px;color:#C4B8DC;line-height:1.6">Lower left under Profile. Looks like 2/4, 5/1, 1/3 etc.</div></div></div>
+            <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#D4A847,#C49020);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:14px;font-weight:600">4</div><div><div style="font-size:15px;font-weight:600;color:#F0EAF8;font-family:"DM Sans",sans-serif;margin-bottom:2px">Open Centers</div><div style="font-size:14px;color:#C4B8DC;line-height:1.6">White/empty shapes on the bodygraph are your open centers.</div></div></div>
           </div>
         </div>
         <button id="btnHaveChart" class="btn-pink" style="margin-bottom:8px">I Have My Chart &mdash; Enter My Design &#10022;</button>
-        <button id="btnBackFromGuide" style="background:none;border:none;color:#aaa;font-size:13px;width:100%;cursor:pointer;padding:8px">&larr; Back</button>
+        <button id="btnBackFromGuide" style="background:none;border:none;color:#C4B8DC;font-size:13px;width:100%;cursor:pointer;padding:8px">&larr; Back</button>
       </div>
       <div id="hdTypeEntry" style="display:none">
-        <div style="font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#B8860B;margin-bottom:8px;font-family:Georgia,serif">Your Type</div>
+        <div style="font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#B8860B;margin-bottom:8px;font-family:'DM Sans',sans-serif">Your Type</div>
         <div id="typeButtons"></div>
         <button id="continueBtn" class="btn-navy" style="margin-top:12px;opacity:0.5" onclick="goToStep2()">Continue &rarr;</button>
-        <button id="btnBackFromEntry" style="background:none;border:none;color:#aaa;font-size:13px;width:100%;cursor:pointer;padding:8px;margin-top:4px">&larr; Back</button>
+        <button id="btnBackFromEntry" style="background:none;border:none;color:#C4B8DC;font-size:13px;width:100%;cursor:pointer;padding:8px;margin-top:4px">&larr; Back</button>
       </div>
     </div>
     <div id="modalStep2" class="hidden">
       <div style="margin-bottom:16px">
-        <div style="font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#B8860B;margin-bottom:8px;font-family:Georgia,serif">Your Authority</div>
+        <div style="font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#B8860B;margin-bottom:8px;font-family:'DM Sans',sans-serif">Your Authority</div>
         <div id="authorityButtons"></div>
       </div>
       <div>
-        <div style="font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#B8860B;margin-bottom:8px;font-family:Georgia,serif">Your Profile Line</div>
+        <div style="font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#B8860B;margin-bottom:8px;font-family:'DM Sans',sans-serif">Your Profile Line</div>
         <div id="profileButtons" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px"></div>
       </div>
       <div style="display:flex;gap:10px">
@@ -172,7 +238,7 @@ button{cursor:pointer;font-family:Georgia,serif;border:none;outline:none}
       </div>
     </div>
     <div id="modalStep3" class="hidden">
-      <div style="font-size:14px;color:#888;font-style:italic;text-align:center;margin-bottom:16px">Select your open centers. Skip if unsure.</div>
+      <div style="font-size:14px;color:#C4B8DC;font-style:italic;text-align:center;margin-bottom:16px">Select your open centers. Skip if unsure.</div>
       <div id="centerButtons" class="center-grid"></div>
       <div style="display:flex;gap:10px">
         <button class="btn-grey" onclick="goToStep2()">&larr;</button>
@@ -859,7 +925,7 @@ function updateProfileDisplay() {
   tags.innerHTML = "";
   if (profile.type) {
     var span = document.createElement("span");
-    span.style.cssText = "font-size:16px;color:#B8860B;font-style:italic;font-family:'Playfair Display',Georgia,serif;display:block;margin-top:8px";
+    span.style.cssText = "font-size:16px;color:#B8860B;font-style:italic;font-family:'Josefin Sans',sans-serif;display:block;margin-top:8px";
     span.textContent = "You\u2019re a " + profile.type;
     tags.appendChild(span);
   }
@@ -870,7 +936,7 @@ function buildParas(container, text) {
   var paras = text.split("\n\n");
   for (var i = 0; i < paras.length; i++) {
     var p = document.createElement("p");
-    p.style.cssText = "margin:0 0 14px;font-size:17px;color:#3a3a3a;line-height:1.9";
+    p.style.cssText = "margin:0 0 14px;font-size:17px;color:#2a1550;line-height:1.9";
     var lines = paras[i].split("\n");
     for (var j = 0; j < lines.length; j++) {
       if (j > 0) p.appendChild(document.createElement("br"));
@@ -935,8 +1001,8 @@ function makeAccord(eyebrow, title, color, content) {
 
 function makeHowCard(label, text) {
   var c = div(""); c.style.cssText = "background:#fff;border:1px solid #f0e8d4;border-radius:12px;padding:18px;margin-bottom:12px";
-  var l = el("div", label); l.style.cssText = "font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#B8860B;margin-bottom:6px;font-family:Georgia,serif";
-  var t = el("p", text); t.style.cssText = "font-size:15px;color:#555;line-height:1.7;margin:0";
+  var l = el("div", label); l.style.cssText = "font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#B8860B;margin-bottom:6px;font-family:'DM Sans',sans-serif";
+  var t = el("p", text); t.style.cssText = "font-size:15px;color:#6b5b8a;line-height:1.7;margin:0";
   c.appendChild(l); c.appendChild(t); return c;
 }
 
@@ -958,15 +1024,15 @@ function buildTransitTab() {
   var audioWrap = div(""); audioWrap.style.cssText = "padding:16px 24px 4px;";
   var audioInner = div(""); audioInner.style.cssText = "background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:14px;";
   var playBtn = document.createElement("button"); playBtn.id = "audioPlayBtn";
-  playBtn.style.cssText = "width:42px;height:42px;border-radius:50%;background:#FF1F7A;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;";
+  playBtn.style.cssText = "width:42px;height:42px;border-radius:50%;background:#D4A847;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;";
   playBtn.innerHTML = "<svg width=\"14\" height=\"16\" viewBox=\"0 0 14 16\" fill=\"none\"><path d=\"M1 1l12 7-12 7V1z\" fill=\"#fff\"/></svg>";
   var audioMeta = div(""); audioMeta.style.cssText = "display:flex;flex-direction:column;gap:2px;flex:1;";
-  var audioTitle = el("div", "\u25B6  This Week's Gate Message"); audioTitle.style.cssText = "font-size:14px;font-weight:600;color:#fff;font-family:'Playfair Display',Georgia,serif;";
+  var audioTitle = el("div", "\u25B6  This Week's Gate Message"); audioTitle.style.cssText = "font-size:14px;font-weight:600;color:#fff;font-family:'Josefin Sans',sans-serif;";
   var audioSub = el("div", "A voice note from Aurailia · Gate " + g.number); audioSub.style.cssText = "font-size:12px;color:rgba(255,255,255,0.6);";
   var audioEl = document.createElement("audio"); audioEl.id = "gateAudio"; audioEl.style.display = "none";
   if (WEEKLY_AUDIO_URL) { audioEl.src = WEEKLY_AUDIO_URL; }
   var progressWrap = div(""); progressWrap.style.cssText = "width:100%;height:3px;background:rgba(255,255,255,0.15);border-radius:2px;margin-top:6px;cursor:pointer;";
-  var progressBar = div(""); progressBar.id = "audioProgress"; progressBar.style.cssText = "height:3px;background:#FF1F7A;border-radius:2px;width:0%;transition:width 0.1s;";
+  var progressBar = div(""); progressBar.id = "audioProgress"; progressBar.style.cssText = "height:3px;background:#D4A847;border-radius:2px;width:0%;transition:width 0.1s;";
   progressWrap.appendChild(progressBar);
   audioMeta.appendChild(audioTitle); audioMeta.appendChild(audioSub); audioMeta.appendChild(progressWrap);
   audioInner.appendChild(playBtn); audioInner.appendChild(audioMeta); audioInner.appendChild(audioEl);
@@ -1002,9 +1068,9 @@ function buildTransitTab() {
       build: function(wrap) {
         var howIntro = document.createElement("div");
         buildParas(howIntro, "Welcome to your Weekly Sun Transit Wealth Frequency portal. \u2728\n\nEvery week the Sun moves into a new gate in Human Design. Think of it like a cosmic energy shift that affects everyone, whether they know about it or not. There are 64 gates in total and the Sun spends about 5 to 6 days in each one before moving on.\n\nEach gate brings its own energy. Its own theme. Its own way of showing up in your life, your relationships, and your business. When you know what gate is active, you stop wondering why you\u2019re feeling a certain way and start working with the energy instead of against it.\n\nThat\u2019s what this portal is for. Every week it gives you the specific energy available right now and what it means for you as a woman growing a business and manifesting the life you actually want.\n\nHere\u2019s the part that makes it personal. Everyone has their own Human Design chart. Your type, your centres, your profile, all of it affects how you experience each gate differently. Gate 18 might show up one way for a Projector and a completely different way for a Manifesting Generator. Same energy, different activation depending on how you\u2019re wired.\n\nThat\u2019s why your chart matters. The gate tells you what\u2019s available this week. Your design tells you how to actually use it.\n\nSet up your Human Design below and this portal will speak directly to you every time you come back. \uD83D\uDD25");
-        howIntro.style.cssText = "font-size:16px;color:#3a3a3a;line-height:1.85;margin-bottom:20px";
+        howIntro.style.cssText = "font-size:16px;color:#2a1550;line-height:1.85;margin-bottom:20px";
         wrap.appendChild(howIntro);
-        var howTitle2 = el("div", "How to use it:"); howTitle2.style.cssText = "font-size:14px;font-weight:600;color:#1A1A2E;margin-bottom:14px;font-family:'Playfair Display',Georgia,serif";
+        var howTitle2 = el("div", "How to use it:"); howTitle2.style.cssText = "font-size:14px;font-weight:600;color:#2a1550;margin-bottom:14px;font-family:'Josefin Sans',sans-serif";
         wrap.appendChild(howTitle2);
         wrap.appendChild(makeHowCard("Monday Morning Reset", "Open Boss Energy and Your Move. Pull an oracle card. Set your intention for the week."));
         wrap.appendChild(makeHowCard("Before Creating Content", "Read Magnetic Shift to understand the energy available. Check Your Design to see how your type is activated. Create from that place."));
@@ -1020,12 +1086,12 @@ function buildTransitTab() {
       id: "shadowhigh", eye: "Shadow & Highest Self", label: "Where You Might Get Stuck / Stepping Into Your Power",
       build: function(wrap) {
         var s1 = div(""); s1.style.marginBottom = "28px";
-        var h1 = el("h3", "Where You Might Get Stuck"); h1.style.cssText = "font-size:18px;font-weight:600;color:#89CFF0;font-family:'Playfair Display',Georgia,serif;margin-bottom:12px";
-        s1.appendChild(h1); buildParas(s1, c.shadow); if(c.shadow_wayout){var woBox=div("");woBox.style.cssText="background:rgba(137,207,240,0.07);border:1px solid rgba(137,207,240,0.2);border-radius:12px;padding:16px 20px;margin-top:16px";var woLbl=el("div","✨ How To Get Out Of It");woLbl.style.cssText="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#89CFF0;margin-bottom:10px;font-family:Georgia,serif";var woTxt=el("p",c.shadow_wayout);woTxt.style.cssText="font-size:16px;color:#3a3a3a;line-height:1.85;margin:0";woBox.appendChild(woLbl);woBox.appendChild(woTxt);s1.appendChild(woBox);} wrap.appendChild(s1);
+        var h1 = el("h3", "Where You Might Get Stuck"); h1.style.cssText = "font-size:18px;font-weight:600;color:#b8860b;font-family:'Josefin Sans',sans-serif;margin-bottom:12px";
+        s1.appendChild(h1); buildParas(s1, c.shadow); if(c.shadow_wayout){var woBox=div("");woBox.style.cssText="background:rgba(137,207,240,0.07);border:1px solid rgba(137,207,240,0.2);border-radius:12px;padding:16px 20px;margin-top:16px";var woLbl=el("div","✨ How To Get Out Of It");woLbl.style.cssText="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#b8860b;margin-bottom:10px;font-family:'DM Sans',sans-serif";var woTxt=el("p",c.shadow_wayout);woTxt.style.cssText="font-size:16px;color:#2a1550;line-height:1.85;margin:0";woBox.appendChild(woLbl);woBox.appendChild(woTxt);s1.appendChild(woBox);} wrap.appendChild(s1);
         var divLine = div(""); divLine.style.cssText = "height:1px;background:linear-gradient(to right,transparent,rgba(255,31,122,0.2),transparent);margin-bottom:28px";
         wrap.appendChild(divLine);
         var s2 = div("");
-        var h2b = el("h3", "Stepping Into Your Power"); h2b.style.cssText = "font-size:18px;font-weight:600;color:#E8A0BF;font-family:'Playfair Display',Georgia,serif;margin-bottom:12px";
+        var h2b = el("h3", "Stepping Into Your Power"); h2b.style.cssText = "font-size:18px;font-weight:600;color:#b8860b;font-family:'Josefin Sans',sans-serif;margin-bottom:12px";
         s2.appendChild(h2b); buildParas(s2, c.high); wrap.appendChild(s2);
       }
     },
@@ -1037,26 +1103,26 @@ function buildTransitTab() {
       id: "moveaff", eye: "Your Move + Reflection", label: "Your Move + Affirmation",
       build: function(wrap) {
         var s1 = div(""); s1.style.marginBottom = "28px";
-        var h1 = el("h3", "Your Move This Week"); h1.style.cssText = "font-size:18px;font-weight:600;color:#FF1F7A;font-family:'Playfair Display',Georgia,serif;margin-bottom:12px";
+        var h1 = el("h3", "Your Move This Week"); h1.style.cssText = "font-size:18px;font-weight:600;color:#D4A847;font-family:'Josefin Sans',sans-serif;margin-bottom:12px";
         s1.appendChild(h1); buildParas(s1, c.move); wrap.appendChild(s1);
         var div1 = div(""); div1.style.cssText = "height:1px;background:linear-gradient(to right,transparent,rgba(255,31,122,0.2),transparent);margin-bottom:28px"; wrap.appendChild(div1);
         var s2 = div(""); s2.style.marginBottom = "28px";
-        var h2b = el("h3", "Reflect On This"); h2b.style.cssText = "font-size:18px;font-weight:600;color:#89CFF0;font-family:'Playfair Display',Georgia,serif;margin-bottom:12px";
+        var h2b = el("h3", "Reflect On This"); h2b.style.cssText = "font-size:18px;font-weight:600;color:#b8860b;font-family:'Josefin Sans',sans-serif;margin-bottom:12px";
         s2.appendChild(h2b);
         for (var q = 0; q < c.reflections.length; q++) {
           var rrow = div(""); rrow.style.cssText = "display:flex;gap:10px;align-items:flex-start;margin-bottom:14px";
-          var rst = el("span", "✨"); rst.style.cssText = "color:#FF1F7A;font-size:14px;margin-top:3px;flex-shrink:0";
-          var rqp = el("p", c.reflections[q]); rqp.style.cssText = "margin:0;font-size:17px;color:#444;font-style:italic;line-height:1.8";
+          var rst = el("span", "✨"); rst.style.cssText = "color:#D4A847;font-size:14px;margin-top:3px;flex-shrink:0";
+          var rqp = el("p", c.reflections[q]); rqp.style.cssText = "margin:0;font-size:17px;color:#2a1550;font-style:italic;line-height:1.8";
           rrow.appendChild(rst); rrow.appendChild(rqp); s2.appendChild(rrow);
         }
         wrap.appendChild(s2);
         var div2 = div(""); div2.style.cssText = "height:1px;background:linear-gradient(to right,transparent,rgba(255,31,122,0.2),transparent);margin-bottom:28px"; wrap.appendChild(div2);
         var s3 = div(""); s3.style.cssText = "text-align:center;padding:20px 0";
         var affL = el("div", "Today’s Affirmation"); affL.style.cssText = "font-size:12px;letter-spacing:0.25em;text-transform:uppercase;color:#B8860B;margin-bottom:12px";
-        var affI = el("p", c.affirmationInstruction); affI.style.cssText = "font-size:16px;color:#888;font-style:italic;margin-bottom:18px;line-height:1.6";
-        var affT = el("p", c.affirmation); affT.style.cssText = "font-size:22px;color:#1A1A2E;font-style:italic;line-height:1.65;margin:0 0 18px;font-family:'Playfair Display',Georgia,serif";
+        var affI = el("p", c.affirmationInstruction); affI.style.cssText = "font-size:16px;color:#6b5b8a;font-style:italic;margin-bottom:18px;line-height:1.6";
+        var affT = el("p", c.affirmation); affT.style.cssText = "font-size:22px;color:#2a1550;font-style:italic;line-height:1.65;margin:0 0 18px;font-family:'Josefin Sans',sans-serif";
         var affB = div(""); affB.style.cssText = "width:32px;height:1px;background:rgba(255,31,122,0.35);margin:0 auto 16px";
-        var affC = el("p", c.affirmationClose); affC.style.cssText = "font-size:16px;color:#555;line-height:1.9;max-width:560px;margin:0 auto";
+        var affC = el("p", c.affirmationClose); affC.style.cssText = "font-size:16px;color:#6b5b8a;line-height:1.9;max-width:560px;margin:0 auto";
         s3.appendChild(affL); s3.appendChild(affI); s3.appendChild(affT); s3.appendChild(affB); s3.appendChild(affC);
         wrap.appendChild(s3);
       }
@@ -1073,27 +1139,27 @@ function buildTransitTab() {
         var pg = pLine ? wgd.by_profile[pLine] : null;
         var gdH = div(""); gdH.style.cssText = "margin-bottom:20px";
         var gdTi = el("h3", wgd.gate_name + " × " + profile.type); gdTi.className = "block-title"; gdTi.style.marginBottom = "4px";
-        if (profile.profileLine) { var gdSub = el("div", "Profile " + profile.profileLine + (profile.authority ? " · " + profile.authority : "")); gdSub.style.cssText = "font-size:14px;color:#888;font-style:italic"; gdH.appendChild(gdTi); gdH.appendChild(gdSub); } else { gdH.appendChild(gdTi); }
+        if (profile.profileLine) { var gdSub = el("div", "Profile " + profile.profileLine + (profile.authority ? " · " + profile.authority : "")); gdSub.style.cssText = "font-size:14px;color:#6b5b8a;font-style:italic"; gdH.appendChild(gdTi); gdH.appendChild(gdSub); } else { gdH.appendChild(gdTi); }
         wrap.appendChild(gdH);
         if (tg) {
           var sBox = div("why-box"); sBox.style.marginBottom = "16px";
-          var sLbl = el("div", "Where You Might Get Stuck This Week"); sLbl.style.cssText = "font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#89CFF0;margin-bottom:10px;font-family:Georgia,serif";
+          var sLbl = el("div", "Where You Might Get Stuck This Week"); sLbl.style.cssText = "font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#b8860b;margin-bottom:10px;font-family:'DM Sans',sans-serif";
           var sTxt = div(""); buildParas(sTxt, tg.shadow);
-          sBox.appendChild(sLbl); sBox.appendChild(sTxt); if(tg.wayout){var twBox=div("");twBox.style.cssText="background:rgba(137,207,240,0.07);border:1px solid rgba(137,207,240,0.18);border-radius:10px;padding:14px 18px;margin-top:14px";var twLbl=el("div","✨ How To Get Out Of It");twLbl.style.cssText="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#89CFF0;margin-bottom:8px;font-family:Georgia,serif";var twTxt=el("p",tg.wayout);twTxt.style.cssText="font-size:16px;color:#3a3a3a;line-height:1.85;margin:0";twBox.appendChild(twLbl);twBox.appendChild(twTxt);sBox.appendChild(twBox);}
+          sBox.appendChild(sLbl); sBox.appendChild(sTxt); if(tg.wayout){var twBox=div("");twBox.style.cssText="background:rgba(137,207,240,0.07);border:1px solid rgba(137,207,240,0.18);border-radius:10px;padding:14px 18px;margin-top:14px";var twLbl=el("div","✨ How To Get Out Of It");twLbl.style.cssText="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#b8860b;margin-bottom:8px;font-family:'DM Sans',sans-serif";var twTxt=el("p",tg.wayout);twTxt.style.cssText="font-size:16px;color:#2a1550;line-height:1.85;margin:0";twBox.appendChild(twLbl);twBox.appendChild(twTxt);sBox.appendChild(twBox);}
           var gBox = div(""); gBox.style.cssText = "background:rgba(255,31,122,0.03);border:1px solid rgba(255,31,122,0.12);border-radius:14px;padding:20px;margin-bottom:16px";
-          var gLbl = el("div", "Stepping Into Your Power This Week"); gLbl.style.cssText = "font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#FF1F7A;margin-bottom:10px;font-family:Georgia,serif";
+          var gLbl = el("div", "Stepping Into Your Power This Week"); gLbl.style.cssText = "font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#D4A847;margin-bottom:10px;font-family:'DM Sans',sans-serif";
           var gTxt = div(""); buildParas(gTxt, tg.gift);
           gBox.appendChild(gLbl); gBox.appendChild(gTxt);
           var aBox = div("action-box");
-          var aLbl = el("div", "Your Move This Week"); aLbl.style.cssText = "font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#89CFF0;margin-bottom:10px;font-family:Georgia,serif";
-          var aTxt = el("p", tg.activation); aTxt.style.cssText = "font-size:17px;color:#2a2a2a;line-height:1.85;font-weight:600;margin:0";
+          var aLbl = el("div", "Your Move This Week"); aLbl.style.cssText = "font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#b8860b;margin-bottom:10px;font-family:'DM Sans',sans-serif";
+          var aTxt = el("p", tg.activation); aTxt.style.cssText = "font-size:17px;color:#2a1550;line-height:1.85;font-weight:600;margin:0";
           aBox.appendChild(aLbl); aBox.appendChild(aTxt);
           wrap.appendChild(sBox); wrap.appendChild(gBox); wrap.appendChild(aBox);
         }
         if (pg) {
           var pBox = div(""); pBox.style.cssText = "background:rgba(184,134,11,0.05);border:1px solid rgba(184,134,11,0.2);border-radius:14px;padding:20px;margin-top:16px";
-          var pLbl = el("div", "Your Profile Line + This Gate"); pLbl.style.cssText = "font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#B8860B;margin-bottom:10px;font-family:Georgia,serif";
-          var pTxt = el("p", pg); pTxt.style.cssText = "font-size:17px;color:#3a3a3a;line-height:1.85;margin:0";
+          var pLbl = el("div", "Your Profile Line + This Gate"); pLbl.style.cssText = "font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#B8860B;margin-bottom:10px;font-family:'DM Sans',sans-serif";
+          var pTxt = el("p", pg); pTxt.style.cssText = "font-size:17px;color:#2a1550;line-height:1.85;margin:0";
           pBox.appendChild(pLbl); pBox.appendChild(pTxt); wrap.appendChild(pBox);
         }
       }
@@ -1122,6 +1188,7 @@ function buildTransitTab() {
         for (var p = 0; p < allPanels.length; p++) allPanels[p].classList.remove("active");
         this.classList.add("active");
         contentArea.querySelector("#sp-" + s.id).classList.add("active");
+        document.getElementById('mainTabs').scrollIntoView({behavior:'smooth',block:'start'});
       };
       nav.appendChild(btn);
 
@@ -1142,7 +1209,7 @@ function buildTransitTab() {
     (function(s, idx) {
       var bodyContent = div("");
       s.build(bodyContent);
-      var acc = makeAccord(s.eye, s.label, "#FF1F7A", bodyContent);
+      var acc = makeAccord(s.eye, s.label, "#D4A847", bodyContent);
       if (idx === 0) {
         var firstHdr = acc.querySelector(".accord-hdr");
         var firstBody = acc.querySelector(".accord-body");
@@ -1163,7 +1230,7 @@ function buildWealthTab() {
 
   if (!profile || !profile.type) {
     var msg = div(""); msg.style.cssText = "text-align:center;padding:40px 24px";
-    var t = el("p", "Enter your Human Design below and this will show you exactly how you're wired to attract wealth."); t.style.cssText = "font-size:17px;color:#888;font-style:italic;line-height:1.7;margin-bottom:20px";
+    var t = el("p", "Enter your Human Design below and this will show you exactly how you're wired to attract wealth."); t.style.cssText = "font-size:17px;color:#6b5b8a;font-style:italic;line-height:1.7;margin-bottom:20px";
     var btn = el("button", "Set Up My Design ✶"); btn.className = "btn-pink"; btn.style.width = "auto"; btn.style.padding = "14px 32px"; btn.onclick = showSetup;
     msg.appendChild(t); msg.appendChild(btn); tab.appendChild(msg); return;
   }
@@ -1199,14 +1266,14 @@ function buildWealthTab() {
           var cd = HD_OPEN_CENTERS[centerName];
           if (!cd) continue;
           var cWrap = div(""); cWrap.style.marginBottom = ci < profile.centers.length - 1 ? "24px" : "0";
-          var cTitle = el("div", centerName); cTitle.style.cssText = "font-size:17px;font-weight:600;color:#1A1A2E;font-family:'Playfair Display',Georgia,serif;margin-bottom:14px";
+          var cTitle = el("div", centerName); cTitle.style.cssText = "font-size:17px;font-weight:600;color:#2a1550;font-family:'Josefin Sans',sans-serif;margin-bottom:14px";
           var sW = div(""); sW.style.cssText = "margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #f5f0e8";
-          var sL = el("div", "Where You Get Stuck"); sL.style.cssText = "font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#89CFF0;margin-bottom:8px;font-family:Georgia,serif";
-          var sT = el("p", cd.shadow); sT.style.cssText = "font-size:16px;color:#3a3a3a;line-height:1.85;margin:0";
+          var sL = el("div", "Where You Get Stuck"); sL.style.cssText = "font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#b8860b;margin-bottom:8px;font-family:'DM Sans',sans-serif";
+          var sT = el("p", cd.shadow); sT.style.cssText = "font-size:16px;color:#2a1550;line-height:1.85;margin:0";
           sW.appendChild(sL); sW.appendChild(sT);
           var gW = div("");
-          var gL = el("div", "Your Superpower"); gL.style.cssText = "font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#FF1F7A;margin-bottom:8px;font-family:Georgia,serif";
-          var gT = el("p", cd.gift); gT.style.cssText = "font-size:16px;color:#3a3a3a;line-height:1.85;margin:0";
+          var gL = el("div", "Your Superpower"); gL.style.cssText = "font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#D4A847;margin-bottom:8px;font-family:'DM Sans',sans-serif";
+          var gT = el("p", cd.gift); gT.style.cssText = "font-size:16px;color:#2a1550;line-height:1.85;margin:0";
           gW.appendChild(gL); gW.appendChild(gT);
           cWrap.appendChild(cTitle); cWrap.appendChild(sW); cWrap.appendChild(gW);
           wrap.appendChild(cWrap);
@@ -1217,7 +1284,7 @@ function buildWealthTab() {
 
   if (wsections.length === 0) {
     var noD = div(""); noD.style.cssText = "text-align:center;padding:32px";
-    var noM = el("p", "Set up your Human Design below to unlock your full Wealth Blueprint."); noM.style.cssText = "font-size:16px;color:#aaa;font-style:italic;line-height:1.7;margin-bottom:16px";
+    var noM = el("p", "Set up your Human Design below to unlock your full Wealth Blueprint."); noM.style.cssText = "font-size:16px;color:#6b5b8a;font-style:italic;line-height:1.7;margin-bottom:16px";
     var noB = el("button", "Update My Design ✶"); noB.className = "btn-pink"; noB.onclick = showSetup;
     noD.appendChild(noM); noD.appendChild(noB); tab.appendChild(noD); return;
   }
@@ -1241,6 +1308,7 @@ function buildWealthTab() {
         for (var p = 0; p < allPanels.length; p++) allPanels[p].classList.remove("active");
         this.classList.add("active");
         wContent.querySelector("#wsp-" + s.id).classList.add("active");
+        document.getElementById('mainTabs').scrollIntoView({behavior:'smooth',block:'start'});
       };
       wnav.appendChild(btn);
       var panel = div("spanel" + (idx === 0 ? " active" : ""));
@@ -1259,7 +1327,7 @@ function buildWealthTab() {
     (function(s, idx) {
       var bodyContent = div("");
       s.build(bodyContent);
-      var acc = makeAccord(s.eye, s.label, "#FF1F7A", bodyContent);
+      var acc = makeAccord(s.eye, s.label, "#D4A847", bodyContent);
       if (idx === 0) {
         var fh = acc.querySelector(".accord-hdr"); var fb = acc.querySelector(".accord-body");
         if (fh) { fh.classList.add("open"); fb.classList.add("open"); }
@@ -1277,9 +1345,9 @@ function buildOracleTab() {
   var hdr = div(""); hdr.style.cssText = "text-align:center;padding:28px 24px 20px;border-bottom:1px solid #f0e8d4";
   var h2 = document.createElement("h2"); h2.style.cssText = "font-size:30px;font-weight:400;font-style:italic;margin:0 0 4px";
   var yourText = document.createTextNode("Your ");
-  var oracleSpan = el("span", "Oracle"); oracleSpan.style.color = "#FF1F7A";
+  var oracleSpan = el("span", "Oracle"); oracleSpan.style.color = "#D4A847";
   h2.appendChild(yourText); h2.appendChild(oracleSpan);
-  var sub3 = el("p", "A message from your highest self"); sub3.style.cssText = "font-size:15px;color:#888;font-style:italic";
+  var sub3 = el("p", "A message from your highest self"); sub3.style.cssText = "font-size:15px;color:#C4B8DC;font-style:italic";
   hdr.appendChild(h2); hdr.appendChild(sub3); tab.appendChild(hdr);
   var oc = div(""); oc.id = "oracleContent"; tab.appendChild(oc);
   showBreathPhase();
@@ -1289,23 +1357,23 @@ function showBreathPhase() {
   oraclePhase = "breath"; breathCount = 0; clearBreathTimers();
   var c = document.getElementById("oracleContent"); if(!c) return; c.innerHTML = "";
   var wrap = div(""); wrap.style.cssText = "padding:28px 24px 36px;text-align:center";
-  var intro = el("p", "Take a breath before you pull..."); intro.style.cssText = "font-size:22px;font-style:italic;margin-bottom:6px;line-height:1.5;font-family:'Playfair Display',Georgia,serif;color:#1A1A2E";
-  var sub4 = el("p", "Close your eyes for a second. Think about what you need right now. Then choose your card."); sub4.style.cssText = "font-size:17px;color:#555;font-style:italic;line-height:1.7;margin-bottom:20px";
-  var counter = el("div", ""); counter.id = "breathCounter"; counter.style.cssText = "font-size:14px;letter-spacing:0.2em;text-transform:uppercase;color:#FF1F7A;margin-bottom:16px;opacity:0.8;display:none";
+  var intro = el("p", "Take a breath before you pull..."); intro.style.cssText = "font-size:22px;font-style:italic;margin-bottom:6px;line-height:1.5;font-family:'Josefin Sans',sans-serif;color:#F0EAF8";
+  var sub4 = el("p", "Close your eyes for a second. Think about what you need right now. Then choose your card."); sub4.style.cssText = "font-size:17px;color:#C4B8DC;font-style:italic;line-height:1.7;margin-bottom:20px";
+  var counter = el("div", ""); counter.id = "breathCounter"; counter.style.cssText = "font-size:14px;letter-spacing:0.2em;text-transform:uppercase;color:#D4A847;margin-bottom:16px;opacity:0.8;display:none";
   var circle = document.createElement("div"); circle.id = "breathCircle";
   circle.style.cssText = "width:110px;height:110px;border-radius:50%;border:1.5px solid rgba(255,31,122,0.3);display:flex;align-items:center;justify-content:center;cursor:pointer;background:radial-gradient(circle,rgba(255,31,122,0.05) 0%,transparent 70%);margin:0 auto 8px";
   var inner = document.createElement("div"); inner.id = "breathInner";
   inner.style.cssText = "width:66px;height:66px;border-radius:50%;border:1px solid rgba(255,31,122,0.15);display:flex;align-items:center;justify-content:center";
-  var dot = document.createElement("div"); dot.style.cssText = "width:8px;height:8px;border-radius:50%;background:#FF1F7A;opacity:0.3";
+  var dot = document.createElement("div"); dot.style.cssText = "width:8px;height:8px;border-radius:50%;background:#D4A847;opacity:0.3";
   inner.appendChild(dot); circle.appendChild(inner); circle.onclick = startBreath;
   var dots = div(""); dots.style.cssText = "display:flex;gap:8px;justify-content:center;margin:16px 0 24px";
   var d1 = document.createElement("div"); d1.id = "dot1"; d1.style.cssText = "width:6px;height:6px;border-radius:50%;border:1px solid rgba(255,31,122,0.4);transition:background 0.4s"; dots.appendChild(d1);
-  var label = el("p", "Tap to begin"); label.id = "breathLabel"; label.style.cssText = "font-size:18px;font-style:italic;margin:0 0 24px;color:#3a3a3a;font-family:'Playfair Display',Georgia,serif";
+  var label = el("p", "Tap to begin"); label.id = "breathLabel"; label.style.cssText = "font-size:18px;font-style:italic;margin:0 0 24px;color:#D4A847;font-family:'Josefin Sans',sans-serif";
   var doneDiv = div(""); doneDiv.id = "breathDone"; doneDiv.style.display = "none";
-  var doneText = el("p", "Beautiful. Your cards are coming..."); doneText.style.cssText = "font-size:17px;color:#FF1F7A;font-style:italic;text-align:center;line-height:1.7";
+  var doneText = el("p", "Beautiful. Your cards are coming..."); doneText.style.cssText = "font-size:17px;color:#D4A847;font-style:italic;text-align:center;line-height:1.7";
   doneDiv.appendChild(doneText);
   var skipBtn = document.createElement("button");
-  skipBtn.style.cssText = "background:none;border:none;color:#bbb;font-size:13px;font-family:Georgia,serif;cursor:pointer;margin-top:8px;display:block;width:100%;text-align:center;text-decoration:underline";
+  skipBtn.style.cssText = "background:none;border:none;color:#bbb;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:8px;display:block;width:100%;text-align:center;text-decoration:underline";
   skipBtn.textContent = "Skip, just pull a card";
   skipBtn.onclick = function() { clearBreathTimers(); showSelectPhase(); };
   wrap.appendChild(intro); wrap.appendChild(sub4); wrap.appendChild(counter); wrap.appendChild(circle); wrap.appendChild(dots); wrap.appendChild(label); wrap.appendChild(doneDiv); wrap.appendChild(skipBtn);
@@ -1322,7 +1390,7 @@ function runBreathCycle(count) {
   var t1 = setTimeout(function() {
     setBreathState("exhale");
     var t2 = setTimeout(function() {
-      var dotEl = document.getElementById("dot" + breathCount); if (dotEl) dotEl.style.background = "#FF1F7A";
+      var dotEl = document.getElementById("dot" + breathCount); if (dotEl) dotEl.style.background = "#D4A847";
       if (breathCount >= 1) {
     setBreathState("done");
     setTimeout(function() { showSelectPhase(); }, 1200);
@@ -1335,7 +1403,7 @@ function setBreathState(state) {
   var circle = document.getElementById("breathCircle"); var inner = document.getElementById("breathInner"); var label = document.getElementById("breathLabel");
   if (!circle) return;
   var labels = {inhale:"Breathe in...",exhale:"Breathe out...",done:"Beautiful."};
-  if (label) { label.textContent = labels[state] || ""; label.style.color = state === "done" ? "#FF1F7A" : "#3a3a3a"; }
+  if (label) { label.textContent = labels[state] || ""; label.style.color = state === "done" ? "#D4A847" : "#3a3a3a"; }
   var dur = state === "inhale" ? "4000ms" : "6000ms";
   var sz = state === "inhale" ? "180px" : "90px";
   var isz = state === "inhale" ? "108px" : "54px";
@@ -1347,8 +1415,8 @@ function showSelectPhase() {
   oracleThree = shuffled;
   var c = document.getElementById("oracleContent"); if(!c) return; c.innerHTML = "";
   var wrap = div("fade-in"); wrap.style.padding = "28px 20px";
-  var intro2 = el("p", "Which one is pulling at you?"); intro2.style.cssText = "text-align:center;font-size:22px;font-style:italic;margin-bottom:6px;font-family:'Playfair Display',Georgia,serif;color:#1A1A2E";
-  var sub5 = el("p", "Don\u2019t think. Feel."); sub5.style.cssText = "text-align:center;font-size:17px;color:#777;font-style:italic;margin-bottom:28px";
+  var intro2 = el("p", "Which one is pulling at you?"); intro2.style.cssText = "text-align:center;font-size:22px;font-style:italic;margin-bottom:6px;font-family:'Josefin Sans',sans-serif;color:#F0EAF8";
+  var sub5 = el("p", "Don\u2019t think. Feel."); sub5.style.cssText = "text-align:center;font-size:17px;color:#C4B8DC;font-style:italic;margin-bottom:28px";
   var grid = div(""); grid.style.cssText = "display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px";
   for (var i = 0; i < shuffled.length; i++) {
     (function(card, idx) {
@@ -1371,14 +1439,14 @@ function pickCard(card) {
   var mcube = div(""); mcube.style.cssText = "margin-bottom:28px;animation:slowPulse 3s infinite ease-in-out";
   var svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
   svg.setAttribute("width","140"); svg.setAttribute("height","140"); svg.setAttribute("viewBox","0 0 100 100"); svg.setAttribute("fill","none");
-  function mkCircle(cx,cy,r,op){var c2=document.createElementNS("http://www.w3.org/2000/svg","circle");c2.setAttribute("cx",cx);c2.setAttribute("cy",cy);c2.setAttribute("r",r);c2.setAttribute("stroke","#FF1F7A");c2.setAttribute("stroke-width","0.8");c2.setAttribute("fill","none");c2.setAttribute("opacity",op);svg.appendChild(c2);}
-  function mkLine(x1,y1,x2,y2,op){var l=document.createElementNS("http://www.w3.org/2000/svg","line");l.setAttribute("x1",x1);l.setAttribute("y1",y1);l.setAttribute("x2",x2);l.setAttribute("y2",y2);l.setAttribute("stroke","#FF1F7A");l.setAttribute("stroke-width","0.6");l.setAttribute("opacity",op);svg.appendChild(l);}
+  function mkCircle(cx,cy,r,op){var c2=document.createElementNS("http://www.w3.org/2000/svg","circle");c2.setAttribute("cx",cx);c2.setAttribute("cy",cy);c2.setAttribute("r",r);c2.setAttribute("stroke","#D4A847");c2.setAttribute("stroke-width","0.8");c2.setAttribute("fill","none");c2.setAttribute("opacity",op);svg.appendChild(c2);}
+  function mkLine(x1,y1,x2,y2,op){var l=document.createElementNS("http://www.w3.org/2000/svg","line");l.setAttribute("x1",x1);l.setAttribute("y1",y1);l.setAttribute("x2",x2);l.setAttribute("y2",y2);l.setAttribute("stroke","#D4A847");l.setAttribute("stroke-width","0.6");l.setAttribute("opacity",op);svg.appendChild(l);}
   mkCircle(50,50,38,"0.25"); mkCircle(50,50,25,"0.18");
   mkLine(50,12,50,88,"0.3"); mkLine(12,50,88,50,"0.3"); mkLine(23,23,77,77,"0.3"); mkLine(77,23,23,77,"0.3");
   mcube.appendChild(svg);
   var dotsWrap = div(""); dotsWrap.style.cssText = "display:flex;gap:6px;justify-content:center;margin-bottom:14px";
-  for (var i = 0; i < 3; i++) { var d2 = document.createElement("div"); d2.style.cssText = "width:6px;height:6px;border-radius:50%;background:#FF1F7A;opacity:0.5;animation:pulse 1.2s " + (i*0.3) + "s infinite ease-in-out"; dotsWrap.appendChild(d2); }
-  var msgEl = el("p", LOADING_MSGS[0]); msgEl.id = "loadingMsg"; msgEl.style.cssText = "font-size:16px;color:#FF1F7A;font-style:italic;font-family:'Playfair Display',Georgia,serif;transition:opacity 0.4s";
+  for (var i = 0; i < 3; i++) { var d2 = document.createElement("div"); d2.style.cssText = "width:6px;height:6px;border-radius:50%;background:#D4A847;opacity:0.5;animation:pulse 1.2s " + (i*0.3) + "s infinite ease-in-out"; dotsWrap.appendChild(d2); }
+  var msgEl = el("p", LOADING_MSGS[0]); msgEl.id = "loadingMsg"; msgEl.style.cssText = "font-size:16px;color:#D4A847;font-style:italic;font-family:'Josefin Sans',sans-serif;transition:opacity 0.4s";
   wrap.appendChild(mcube); wrap.appendChild(dotsWrap); wrap.appendChild(msgEl);
   c.appendChild(wrap);
   var msgIdx = 0;
@@ -1398,36 +1466,36 @@ function showRevealedPhase() {
   var pulled = div(""); pulled.style.cssText = "margin-bottom:20px;text-align:center";
   var pL = el("div", "You Pulled"); pL.style.cssText = "font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#B8860B;margin-bottom:8px";
   var pT = el("h2", card.title); pT.style.cssText = "font-size:30px;font-weight:600;margin:0 0 6px";
-  var pS = el("p", card.symbol); pS.style.cssText = "font-size:20px;color:#FF1F7A;margin:0 0 10px";
+  var pS = el("p", card.symbol); pS.style.cssText = "font-size:20px;color:#D4A847;margin:0 0 10px";
   pulled.appendChild(pL); pulled.appendChild(pT); pulled.appendChild(pS);
 
   var box = div("reading-box");
 
   // ── Section 1: Why You Pulled This ──────────────────────────────
   var whyBox = div(""); whyBox.style.cssText = "text-align:center;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(255,31,122,0.12)";
-  var whyL = el("p", "Why This Card Showed Up For You"); whyL.style.cssText = "font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#B8860B;margin-bottom:10px;font-family:Georgia,serif";
-  var whyT = el("p", card.whyYouPulled); whyT.style.cssText = "font-size:17px;color:#3a3a3a;font-style:italic;line-height:1.8;margin:0";
+  var whyL = el("p", "Why This Card Showed Up For You"); whyL.style.cssText = "font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#B8860B;margin-bottom:10px;font-family:'DM Sans',sans-serif";
+  var whyT = el("p", card.whyYouPulled); whyT.style.cssText = "font-size:17px;color:#2a1550;font-style:italic;line-height:1.8;margin:0";
   whyBox.appendChild(whyL); whyBox.appendChild(whyT);
 
   // ── Section 2: The Message ───────────────────────────────────────
   var msgBox = div(""); msgBox.style.cssText = "text-align:center;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(255,31,122,0.12)";
   var mRow = div(""); mRow.style.cssText = "display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:14px";
   var ml1 = div(""); ml1.style.cssText = "height:1px;width:28px;background:rgba(255,31,122,0.3)";
-  var mTxt = el("span", "What Your Highest Self Wants You To Know"); mTxt.style.cssText = "font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#FF1F7A;font-family:Georgia,serif";
+  var mTxt = el("span", "What Your Highest Self Wants You To Know"); mTxt.style.cssText = "font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#D4A847;font-family:'DM Sans',sans-serif";
   var ml2 = div(""); ml2.style.cssText = "height:1px;width:28px;background:rgba(255,31,122,0.3)";
   mRow.appendChild(ml1); mRow.appendChild(mTxt); mRow.appendChild(ml2);
-  var msg = el("p", card.message); msg.style.cssText = "font-size:19px;color:#1A1A2E;line-height:1.8;font-style:italic;text-align:center;margin:0";
+  var msg = el("p", card.message); msg.style.cssText = "font-size:19px;color:#2a1550;line-height:1.8;font-style:italic;text-align:center;margin:0";
   msgBox.appendChild(mRow); msgBox.appendChild(msg);
 
   // ── Section 3: The Deeper Reading ───────────────────────────────
   var deepBox = div("");
-  var deepLabel = el("p", "Going Deeper"); deepLabel.style.cssText = "font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#FF1F7A;margin-bottom:14px;font-family:Georgia,serif";
+  var deepLabel = el("p", "Going Deeper"); deepLabel.style.cssText = "font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#D4A847;margin-bottom:14px;font-family:'DM Sans',sans-serif";
   var deepText = div("block-text");
   var dParas = card.deeperReading.split("\n");
   for(var i=0;i<dParas.length;i++){
     if(!dParas[i].trim()) continue;
     var dp = document.createElement("p");
-    dp.style.cssText = "margin:0 0 10px;font-size:16px;color:#3a3a3a;line-height:1.7";
+    dp.style.cssText = "margin:0 0 10px;font-size:16px;color:#2a1550;line-height:1.7";
     dp.textContent = dParas[i];
     deepText.appendChild(dp);
   }
@@ -1435,8 +1503,8 @@ function showRevealedPhase() {
 
   // ── Action ──────────────────────────────────────────────────────
   var actBox = div("action-box"); actBox.style.marginTop = "16px";
-  var actL = el("p", "What To Do With This"); actL.style.cssText = "font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#89CFF0;margin-bottom:10px;font-family:Georgia,serif";
-  var actT = el("p", card.action); actT.style.cssText = "font-size:16px;color:#2a2a2a;line-height:1.9;margin:0";
+  var actL = el("p", "What To Do With This"); actL.style.cssText = "font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#b8860b;margin-bottom:10px;font-family:'DM Sans',sans-serif";
+  var actT = el("p", card.action); actT.style.cssText = "font-size:16px;color:#2a1550;line-height:1.9;margin:0";
   actBox.appendChild(actL); actBox.appendChild(actT);
 
   box.appendChild(whyBox);
